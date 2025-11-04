@@ -1,0 +1,11 @@
+[package]
+name = "codecrafters-git"
+version = "0.1.0"
+authors = ["7h3w1zard <7h3w1zard@gmail.com>"]
+edition = "2021"
+rust-version = "1.80"
+
+[dependencies]
+anyhow = "1.0.100"
+clap = { version = "4.5.49", features = ["derive"] }
+flate2 = "1.0.34"    
