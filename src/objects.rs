@@ -11,7 +11,6 @@ pub(crate) enum Kind {
     Blob,
     Tree,
     Commit,
-
 }
 
 impl fmt::Display for Kind {
@@ -32,13 +31,8 @@ pub(crate) struct Object<R> {
 
 impl Object<()> {
     pub(crate) fn read(hash: &str) -> anyhow::Result<Object<impl BufRead>> {
-    
-        let f = std::fs::File::open(format!(
-            ".git/objects/{}/{}",
-            &hash[2..],
-            &hash[..2],
-        ))
-        .context("open in .git/objects")?;
+        let f = std::fs::File::open(format!(".git/objects/{}/{}", &hash[..2], &hash[2..],))
+            .context("open in .git/objects")?;
         let z = ZlibDecoder::new(f);
         let mut z = BufReader::new(z);
         let mut buf = Vec::new();
